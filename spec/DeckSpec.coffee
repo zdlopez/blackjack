@@ -9,7 +9,7 @@ describe 'deck', ->
     hand = deck.dealPlayer()
 
   describe 'hit', ->
-    xit 'should give the last card from the deck', ->
+      it 'should give the last card from the deck', ->
       assert.strictEqual deck.length, 50
       assert.strictEqual deck.last(), hand.hit()
       assert.strictEqual deck.length, 49

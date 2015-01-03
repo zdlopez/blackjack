@@ -2,6 +2,8 @@ todo:
 
 Player/Dealer Blackjack does not trigger gameStop in GameView.coffee
 
+The dealer score adds consealed card score when it is a 10.
+
 add discard deck
 
 get images to display for cards

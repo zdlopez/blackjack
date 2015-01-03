@@ -15,19 +15,26 @@ class window.GameView extends Backbone.View
       @gameStop()
 
   initialize: ->
-    @render()
+    @model.get('playerHand').on('blackjack', (hand)=>
+      console.log('Player blackjack')
+      @gameStop()
+    )
+    @model.get('dealerHand').on('blackjack', (hand)=>
+      console.log('Dealer blackjack')
+      @gameStop()
+    )
     @model.get('playerHand').on('busted', (hand)=>
       @gameStop()
     )
     @model.get('dealerHand').on('busted', (hand)=>
       @gameStop()
     )
-    @model.get('playerHand').on('blackjack', (hand)=>
-      @gameStop()
-    )
-    @model.get('dealerHand').on('blackjack', (hand)=>
-      @gameStop()
-    )
+    @render()
+
+
+    # @model.on('change:decision', =>
+    #   @gameStop()
+    # )
 
   render: ->
     @$el.children().detach()

@@ -3,25 +3,27 @@ class window.Game extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
+    @set 'decision', false
 
     # TODO: Extra Credit
     # Add discard deck
 
-    @get('playerHand').on('blackjack', (hand)=>
-      winner = 'Player'
-      console.log("#{winner} is the winner")
-    )
+    # @get('playerHand').on('blackjack', (hand)=>
+    #   winner = 'Player'
+    #   @set 'decision', true
+    #   console.log("#{winner} is the winner")
+    # )
 
     @get('playerHand').on('busted', (hand)=>
       winner = 'Dealer'
       console.log("#{winner} is the winner")
     )
 
-    @get('dealerHand').on('blackjack', (hand)=>
-      winner = 'Dealer'
-     # hand.first().flip();
-      console.log("#{winner} is the winner")
-    )
+    # @get('dealerHand').on('blackjack', (hand)=>
+    #   winner = 'Dealer'
+    #   @set 'decision', true
+    #   console.log("#{winner} is the winner")
+    # )
 
     @get('dealerHand').on('busted', (hand)=>
       winner = 'Player'
