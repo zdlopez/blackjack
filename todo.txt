@@ -1,9 +1,5 @@
 todo:
 
-# Bugs
-Not catching bust events in GameView
-Player blackjacks not working
-
 add discard deck
 
 get images to display for cards

@@ -3,6 +3,7 @@ class window.GameView extends Backbone.View
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button> <button class="next-game">Next Game</button>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
+    <div class="result"></div>
   '
 
   events:
@@ -56,7 +57,7 @@ class window.GameView extends Backbone.View
     else
       "#{winner} is the winner!"
 
-    @$el.append("<div class=\"result\">#{result}</div>")
+    @$('.result').text(result)
 
 
 
