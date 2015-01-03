@@ -1,0 +1,49 @@
+assert = chai.assert
+
+describe 'Hands', ->
+  deck = null
+  hand = null
+
+  beforeEach ->
+    deck = new Deck()
+    hand = deck.dealPlayer()
+    dealer = deck.dealDealer();
+
+
+  describe 'Scores', ->
+    beforeEach ->
+      king1 = new Card('rank': 0,'suit': 1 )
+      king2 = new Card('rank': 0,'suit': 2)
+      ace1 = new Card('rank': 1,'suit': 1 )
+      ace2 = new Card('rank': 1,'suit': 2)
+      five1 = new Card('rank': 5,'suit': 1 )
+
+    it 'Scores 12 for 2 aces in a hand', ->
+      ace1 = new Card('rank': 1,'suit': 1 )
+      ace2 = new Card('rank': 1,'suit': 2)
+      #Setup 1 hand with 2 aces and check if score is 2.
+      testHand = new Hand [ace1, ace2], deck
+      assert.strictEqual testHand.score(), 12
+
+    it 'Scores 21 for 1 ace and 1 king', ->
+      king1 = new Card('rank': 0,'suit': 1 )
+      ace1 = new Card('rank': 1,'suit': 1 )
+      testHand = new Hand [ace1, king1], deck
+      assert.strictEqual testHand.score(), 21
+
+    # TODO
+    # should detect bust signal
+    it 'Should bust for 2 kings and 1 five', ->
+      king1 = new Card('rank': 0,'suit': 1 )
+      king2 = new Card('rank': 0,'suit': 2)
+      five1 = new Card('rank': 5,'suit': 1 )
+      testHand = new Hand [king1, king2 , five1], deck
+      assert.strictEqual testHand.score(), 25
+
+    # TODO
+    # Should detect blackjack
+
+    # Game controls the Dealer logic
+    #
+
+

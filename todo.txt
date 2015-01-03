@@ -1,0 +1,12 @@
+todo:
+
+update scores function in hand model
+
+add gameModel to replace app logic
+
+add discard deck
+
+get images to display for cards
+
+
+
