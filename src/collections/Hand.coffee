@@ -20,8 +20,6 @@ class window.Hand extends Backbone.Collection
   getScore: ->
     scoreWithAce = @minScore() + 10 * @hasAce()
 
-    console.log(scoreWithAce)
-
     myScore = if scoreWithAce < 22
       scoreWithAce
     else
@@ -32,7 +30,14 @@ class window.Hand extends Backbone.Collection
 
   score: ->
     myScore = @getScore()
-    if @length is 2 and @hasAce and myScore + 11 is 21 and @isDealer
+    if @length is 2 and @hasAce() and myScore + 11 is 21 and @isDealer
+      console.log('Dealer bj', myScore + 11);
+      console.log('Ace?', @hasAce);
+      @blackjack()
+
+
+    if @length is 2 and myScore is 21 and not @isDealer
+      console.log('Player bj', myScore);
       @blackjack()
 
     if myScore > 21
@@ -42,8 +47,7 @@ class window.Hand extends Backbone.Collection
 
 
   blackjack: ->
-    console.log('before the fire')
-    @first().set 'revealed', true
+    console.log('Blackjack fired')
     @trigger('blackjack', @)
 
 

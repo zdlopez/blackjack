@@ -12,29 +12,29 @@ class window.GameView extends Backbone.View
       @initialize()
     'click .stand-button': ->
       @model.get('playerHand').stand()
-      @gameStop()
+      #@gameStop()
 
   initialize: ->
-    @model.get('playerHand').on('blackjack', (hand)=>
-      console.log('Player blackjack')
-      @gameStop()
-    )
-    @model.get('dealerHand').on('blackjack', (hand)=>
-      console.log('Dealer blackjack')
-      @gameStop()
-    )
-    @model.get('playerHand').on('busted', (hand)=>
-      @gameStop()
-    )
-    @model.get('dealerHand').on('busted', (hand)=>
+    # @model.get('playerHand').on('blackjack', (hand)=>
+    #   console.log('Player blackjack')
+    #   @gameStop()
+    # )
+    # @model.get('dealerHand').on('blackjack', (hand)=>
+    #   console.log('Dealer blackjack')
+    #   @gameStop()
+    # )
+    # @model.get('playerHand').on('busted', (hand)=>
+    #   @gameStop()
+    # )
+    # @model.get('dealerHand').on('busted', (hand)=>
+    #   @gameStop()
+    # )
+    @model.on('change:winner', =>
       @gameStop()
     )
     @render()
 
 
-    # @model.on('change:decision', =>
-    #   @gameStop()
-    # )
 
   render: ->
     @$el.children().detach()
@@ -48,16 +48,13 @@ class window.GameView extends Backbone.View
     @$('.stand-button').hide()
     @$('.next-game').show()
 
-    dealerScore = @model.get('dealerHand').getScore()
-    playerScore = @model.get('playerHand').getScore()
+    winner = @model.get 'winner'
 
 
-    result = if dealerScore == playerScore
-      "Push!"
-    else if dealerScore > playerScore
-      "Dealer is the winner"
+    result = if winner is 'Push'
+      'Push!!!'
     else
-      "Player is winner"
+      "#{winner} is the winner!"
 
     @$el.append("<div class=\"result\">#{result}</div>")
 

@@ -3,35 +3,31 @@ class window.Game extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
-    @set 'decision', false
+    @set 'winner', null
 
     # TODO: Extra Credit
     # Add discard deck
 
-    # @get('playerHand').on('blackjack', (hand)=>
-    #   winner = 'Player'
-    #   @set 'decision', true
-    #   console.log("#{winner} is the winner")
-    # )
-
-    @get('playerHand').on('busted', (hand)=>
-      winner = 'Dealer'
-      console.log("#{winner} is the winner")
+    @get('playerHand').on('blackjack', (hand)=>
+      @set 'winner', 'Player'
     )
 
-    # @get('dealerHand').on('blackjack', (hand)=>
-    #   winner = 'Dealer'
-    #   @set 'decision', true
-    #   console.log("#{winner} is the winner")
-    # )
+    @get('playerHand').on('busted', (hand)=>
+      @set 'winner', 'Dealer'
+    )
+
+    @get('dealerHand').on('blackjack', (hand)=>
+      hand.first().set 'revealed', true
+      @set 'winner', 'Dealer'
+    )
 
     @get('dealerHand').on('busted', (hand)=>
-      winner = 'Player'
-      console.log("#{winner} is the winner")
+      @set 'winner', 'Player'
     )
 
     @get('playerHand').on('stand', (hand)=>
       dealer = @get('dealerHand')
+      console.log("Standing")
       dealer.first().flip()
 
       while(dealer.getScore() < 17)
@@ -41,15 +37,15 @@ class window.Game extends Backbone.Model
         dealer.stand()
     )
 
-    # @get('dealerHand').on('stand', (hand)=>
-    #   dealerScore = @get('dealerHand').getScore()
-    #   playerScore = @get('playerHand').getScore()
+    @get('dealerHand').on('stand', (hand)=>
+      dealerScore = @get('dealerHand').getScore()
+      playerScore = @get('playerHand').getScore()
 
-    #   if dealerScore == playerScore
-    #     console.log("Push!")
-    #   else if dealerScore > playerScore
-    #     console.log("Dealer is the winner")
-    #   else
-    #     console.log("Player is winner")
+      if dealerScore == playerScore
+        @set 'winner', 'Push'
+      else if dealerScore > playerScore
+        @set 'winner', 'Dealer'
+      else
+        @set 'winner', 'Player'
 
-    # )
+    )
