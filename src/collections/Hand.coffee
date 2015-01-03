@@ -2,9 +2,9 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
-    @on('add', =>
-      @score()
-      )
+    # @on('add', =>
+    #   @score()
+    #   )
 
   hit: ->
     @add(@deck.pop())
@@ -23,7 +23,7 @@ class window.Hand extends Backbone.Collection
     myscore = if scoreWithAce < 22
       scoreWithAce
     else
-      @minscore()
+      @minScore()
 
     if @length is 2 and myscore is 21
       @blackjack()
@@ -37,6 +37,7 @@ class window.Hand extends Backbone.Collection
     @trigger('blackjack', @)
 
   busted: ->
+    console.log('We are here')
     @trigger('busted', @)
 
 

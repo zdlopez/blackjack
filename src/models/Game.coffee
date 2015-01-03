@@ -7,14 +7,15 @@ class window.Game extends Backbone.Model
     # TODO: Extra Credit
     # Add discard deck
 
-    @on('blackjack', (hand)=>
+    @get('playerHand').on('blackjack', (hand)=>
+      console.log('how about now')
       winner = 'Player'
       if hand.isDealer
         winner = 'Dealer'
       alert("#{winner} is the winner")
     )
 
-    @on('busted', (hand)=>
+    @get('playerHand').on('busted', (hand)=>
       winner = 'Dealer'
       if hand.isDealer
         winner = 'Player'
