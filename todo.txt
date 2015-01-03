@@ -1,8 +1,8 @@
 todo:
 
-Player/Dealer Blackjack does not trigger gameStop in GameView.coffee
-
-The dealer score adds consealed card score when it is a 10.
+# Bugs
+Not catching bust events in GameView
+Player blackjacks not working
 
 add discard deck
 

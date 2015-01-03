@@ -20,10 +20,7 @@ class window.Hand extends Backbone.Collection
   getScore: ->
     scoreWithAce = @minScore() + 10 * @hasAce()
 
-    if @isDealer
-      console.log('minScore', @minScore())
-      console.log('hasAce', @hasAce())
-      console.log('scoreWithAce', scoreWithAce)
+    console.log(scoreWithAce)
 
     myScore = if scoreWithAce < 22
       scoreWithAce
@@ -35,8 +32,7 @@ class window.Hand extends Backbone.Collection
 
   score: ->
     myScore = @getScore()
-    if @length is 2 and @hasAce and myScore + 11 is 21
-
+    if @length is 2 and @hasAce and myScore + 11 is 21 and @isDealer
       @blackjack()
 
     if myScore > 21

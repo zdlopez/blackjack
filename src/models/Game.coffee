@@ -41,15 +41,15 @@ class window.Game extends Backbone.Model
         dealer.stand()
     )
 
-    @get('dealerHand').on('stand', (hand)=>
-      dealerScore = @get('dealerHand').getScore()
-      playerScore = @get('playerHand').getScore()
+    # @get('dealerHand').on('stand', (hand)=>
+    #   dealerScore = @get('dealerHand').getScore()
+    #   playerScore = @get('playerHand').getScore()
 
-      if dealerScore == playerScore
-        console.log("Push!")
-      else if dealerScore > playerScore
-        console.log("Dealer is the winner")
-      else
-        console.log("Player is winner")
+    #   if dealerScore == playerScore
+    #     console.log("Push!")
+    #   else if dealerScore > playerScore
+    #     console.log("Dealer is the winner")
+    #   else
+    #     console.log("Player is winner")
 
-    )
+    # )

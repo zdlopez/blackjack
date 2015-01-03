@@ -9,7 +9,7 @@ class window.GameView extends Backbone.View
     'click .hit-button': -> @model.get('playerHand').hit()
     'click .next-game': ->
       @model.initialize()
-      @render()
+      @initialize()
     'click .stand-button': ->
       @model.get('playerHand').stand()
       @gameStop()
@@ -47,3 +47,22 @@ class window.GameView extends Backbone.View
     @$('.hit-button').hide()
     @$('.stand-button').hide()
     @$('.next-game').show()
+
+    dealerScore = @model.get('dealerHand').getScore()
+    playerScore = @model.get('playerHand').getScore()
+
+
+    result = if dealerScore == playerScore
+      "Push!"
+    else if dealerScore > playerScore
+      "Dealer is the winner"
+    else
+      "Player is winner"
+
+    @$el.append("<div class=\"result\">#{result}</div>")
+
+
+
+
+
+
