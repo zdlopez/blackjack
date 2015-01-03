@@ -17,28 +17,33 @@ class window.Hand extends Backbone.Collection
     score + if card.get 'revealed' then card.get 'value' else 0
   , 0
 
-  score: ->
-    # We take the scores element that is Largest and lower than 22.
+  getScore: ->
     scoreWithAce = @minScore() + 10 * @hasAce()
-    myscore = if scoreWithAce < 22
+    myScore = if scoreWithAce < 22
       scoreWithAce
     else
       @minScore()
+    myScore
 
-    if @length is 2 and myscore is 21
+  score: ->
+    myScore = @getScore()
+    if @length is 2 and myScore is 21
       @blackjack()
 
-    if myscore > 21
+    if myScore > 21
       @busted()
 
-    myscore
+    myScore
+
 
   blackjack: ->
     @trigger('blackjack', @)
 
   busted: ->
-    console.log('We are here')
     @trigger('busted', @)
+
+  stand: ->
+    @trigger('stand', @)
 
 
 

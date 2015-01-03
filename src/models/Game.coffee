@@ -8,18 +8,46 @@ class window.Game extends Backbone.Model
     # Add discard deck
 
     @get('playerHand').on('blackjack', (hand)=>
-      console.log('how about now')
       winner = 'Player'
-      if hand.isDealer
-        winner = 'Dealer'
-      alert("#{winner} is the winner")
+      console.log("#{winner} is the winner")
     )
 
     @get('playerHand').on('busted', (hand)=>
       winner = 'Dealer'
-      if hand.isDealer
-        winner = 'Player'
-      alert("#{winner} is the winner")
+      console.log("#{winner} is the winner")
     )
 
+    @get('dealerHand').on('blackjack', (hand)=>
+      winner = 'Dealer'
+     # hand.first().flip();
+      console.log("#{winner} is the winner")
+    )
 
+    @get('dealerHand').on('busted', (hand)=>
+      winner = 'Player'
+      console.log("#{winner} is the winner")
+    )
+
+    @get('playerHand').on('stand', (hand)=>
+      dealer = @get('dealerHand')
+      dealer.first().flip()
+
+      while(dealer.getScore() < 17)
+        dealer.hit()
+
+      if dealer.getScore() < 22
+        dealer.stand()
+    )
+
+    @get('dealerHand').on('stand', (hand)=>
+      dealerScore = @get('dealerHand').getScore()
+      playerScore = @get('playerHand').getScore()
+
+      if dealerScore == playerScore
+        console.log("Push!")
+      else if dealerScore > playerScore
+        console.log("Dealer is the winner")
+      else
+        console.log("Player is winner")
+
+    )

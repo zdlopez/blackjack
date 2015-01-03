@@ -1,8 +1,6 @@
 todo:
 
-update scores function in hand model
-
-add gameModel to replace app logic
+Player/Dealer Blackjack does not trigger gameStop in GameView.coffee
 
 add discard deck
 
