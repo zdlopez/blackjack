@@ -2,7 +2,5 @@ todo:
 
 add discard deck
 
-get images to display for cards
-
 
 

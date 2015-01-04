@@ -10,6 +10,8 @@ describe 'deck', ->
 
   describe 'hit', ->
       it 'should give the last card from the deck', ->
+      deck = new Deck()
+      hand = deck.dealPlayer()
       assert.strictEqual deck.length, 50
-      assert.strictEqual deck.last(), hand.hit()
+      hand.hit()
       assert.strictEqual deck.length, 49
