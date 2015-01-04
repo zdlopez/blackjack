@@ -31,13 +31,10 @@ class window.Hand extends Backbone.Collection
   score: ->
     myScore = @getScore()
     if @length is 2 and @hasAce() and myScore + 11 is 21 and @isDealer
-      console.log('Dealer bj', myScore + 11);
-      console.log('Ace?', @hasAce);
       @blackjack()
 
 
     if @length is 2 and myScore is 21 and not @isDealer
-      console.log('Player bj', myScore);
       @blackjack()
 
     if myScore > 21
@@ -47,12 +44,11 @@ class window.Hand extends Backbone.Collection
 
 
   blackjack: ->
-    console.log('Blackjack fired')
     @trigger('blackjack', @)
 
 
   busted: ->
-    console.log("i'm busted")
+    console.log('Have i Busted?')
     @trigger('busted', @)
 
   stand: ->

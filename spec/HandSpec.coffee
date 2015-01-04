@@ -8,7 +8,6 @@ describe 'Hands', ->
 
   describe 'Scores', ->
     it 'Scores 12 for 2 aces in a hand', ->
-      console.log(king1)
       ace1 = new Card('rank': 1,'suit': 1 )
       ace2 = new Card('rank': 1,'suit': 2)
       #Setup 1 hand with 2 aces and check if score is 2.

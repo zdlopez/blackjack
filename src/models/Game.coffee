@@ -27,7 +27,6 @@ class window.Game extends Backbone.Model
 
     @get('playerHand').on('stand', (hand)=>
       dealer = @get('dealerHand')
-      console.log("Standing")
       dealer.first().flip()
 
       while(dealer.getScore() < 17)
